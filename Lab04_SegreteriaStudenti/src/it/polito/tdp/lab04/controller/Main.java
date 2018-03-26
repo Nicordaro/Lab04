@@ -10,6 +10,9 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+		
+		//Da fare
+	
 
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("SegreteriaStudenti.fxml"));
