@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -22,8 +22,8 @@ public class SegreteriaStudentiController {
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
 
-    @FXML // fx:id="choiceBox"
-    private ChoiceBox<?> choiceBox; // Value injected by FXMLLoader
+    @FXML // fx:id="comboBox"
+    private ComboBox<?> comboBox; // Value injected by FXMLLoader
 
     @FXML // fx:id="btnSearchSubscribers"
     private Button btnSearchSubscribers; // Value injected by FXMLLoader
@@ -58,6 +58,11 @@ public class SegreteriaStudentiController {
     }
 
     @FXML
+    void doPopola(ActionEvent event) {
+
+    }
+
+    @FXML
     void doReset(ActionEvent event) {
 
     }
@@ -79,7 +84,7 @@ public class SegreteriaStudentiController {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert choiceBox != null : "fx:id=\"choiceBox\" was not injected: check your FXML file 'SegreteriaStudenti.fxml'.";
+        assert comboBox != null : "fx:id=\"comboBox\" was not injected: check your FXML file 'SegreteriaStudenti.fxml'.";
         assert btnSearchSubscribers != null : "fx:id=\"btnSearchSubscribers\" was not injected: check your FXML file 'SegreteriaStudenti.fxml'.";
         assert txtName != null : "fx:id=\"txtName\" was not injected: check your FXML file 'SegreteriaStudenti.fxml'.";
         assert txtID != null : "fx:id=\"txtID\" was not injected: check your FXML file 'SegreteriaStudenti.fxml'.";
