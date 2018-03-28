@@ -18,5 +18,5 @@ public class Model {
 		return listaCorsi;
 	}
 	
-	public List<Studente>
+	//public List<Studente>
 }

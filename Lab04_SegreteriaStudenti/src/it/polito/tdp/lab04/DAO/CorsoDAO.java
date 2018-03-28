@@ -13,7 +13,7 @@ import it.polito.tdp.lab04.model.Studente;
 
 public class CorsoDAO {
 
-	private List<Studente> listaStudenti = new ArrayList<Studente>();
+	private List<Studente> listaStudenti = new ArrayList<>();
 	
 	/*
 	 * Ottengo tutti i corsi salvati nel Db
@@ -21,9 +21,11 @@ public class CorsoDAO {
 	public List<Corso> getTuttiICorsi() {
 
 		final String sql = "SELECT i.matricola, c.*" + 
-				"FROM iscrizione AS i LEFT JOIN corso AS c ON i.`codins`=c.`codins`";
+				"FROM iscrizione AS i, corso AS c " +
+				"WHERE i.codins = c.codins ";
+				 // AS i LEFT JOIN corso AS c ON i.`codins`=c.`codins`"
 
-		List<Corso> corsi = new LinkedList<Corso>();
+		List<Corso> corsi = new LinkedList<>();
 		
 
 		try {
@@ -37,8 +39,9 @@ public class CorsoDAO {
 				int numeroCrediti = rs.getInt("crediti");
 				String nome = rs.getString("nome");
 				int periodoDidattico = rs.getInt("pd");
+				Studente s = new Studente(rs.getInt("matricola"), null, null, null);
 
-				System.out.println(codins + " " + numeroCrediti + " " + nome + " " + periodoDidattico);
+				System.out.println(rs.getInt("matricola")+" "+codins + " " + numeroCrediti + " " + nome + " " + periodoDidattico);
 				
 				corsi.add(new Corso(codins, numeroCrediti, nome, periodoDidattico));
 
