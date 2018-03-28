@@ -10,10 +10,12 @@ import java.util.List;
 
 import it.polito.tdp.lab04.model.Corso;
 import it.polito.tdp.lab04.model.Studente;
+import it.polito.tdp.lab04.DAO.StudenteDAO;
 
 public class CorsoDAO {
 
 	private List<Studente> listaStudenti = new ArrayList<>();
+//	private StudenteDAO stud = new StudenteDAO();
 	
 	/*
 	 * Ottengo tutti i corsi salvati nel Db
@@ -39,11 +41,20 @@ public class CorsoDAO {
 				int numeroCrediti = rs.getInt("crediti");
 				String nome = rs.getString("nome");
 				int periodoDidattico = rs.getInt("pd");
-				Studente s = new Studente(rs.getInt("matricola"), null, null, null);
+				
+				
+//				for(Studente s : stud.getTuttiGliStudenti()) {
+//					if(s.getMatricola()==rs.getInt("matricola")) {
+//						Studente stemp = new Studente(s.getMatricola(), s.getCognome(), s.getNome(), s.getCDS());
+//						listaStudenti.add(stemp);
+//						break;
+//					}
+//				}
+				
 
 				System.out.println(rs.getInt("matricola")+" "+codins + " " + numeroCrediti + " " + nome + " " + periodoDidattico);
 				
-				corsi.add(new Corso(codins, numeroCrediti, nome, periodoDidattico));
+//				corsi.add(new Corso(codins, numeroCrediti, nome, periodoDidattico));
 
 				// Crea un nuovo JAVA Bean Corso
 				// Aggiungi il nuovo oggetto Corso alla lista corsi

@@ -15,9 +15,11 @@ public class StudenteDAO {
 	
 	private List<Corso> listaCorsi = new ArrayList<Corso>();
 	
+//	private CorsoDAO corsodao = new CorsoDAO();
+	
 	public List<Studente> getTuttiGliStudenti() {
 
-		final String sql = "SELECT * FROM studente";
+		final String sql = "SELECT i.codins s.* FROM studente AS s, iscrizione AS i WHERE s.matricola = i.matricola";
 
 		List<Studente> studenti = new LinkedList<Studente>();
 		
@@ -33,10 +35,20 @@ public class StudenteDAO {
 				String nome = rs.getString("nome");
 				String cognome = rs.getString("cognome");
 				String corso = rs.getString("CDS");
+				
+//				for(Corso c : corsodao.getTuttiICorsi()) {
+//					if(c.getCodins().equals(rs.getString("codins"))) {
+//						Corso ctemp = new Corso(c.getCodins(), c.getNumeroCrediti(), c.getNome(), c.getPeriodoDidattico());
+//						listaCorsi.add(ctemp);
+//						break;
+//					}
+//				}
 
 				System.out.println(matricola + " " + cognome + " " + nome + " " + corso);
 				
-				studenti.add(new Studente(matricola, cognome, nome, corso));
+				
+				
+//				studenti.add(new Studente(matricola, cognome, nome, corso));
 
 			}
 
