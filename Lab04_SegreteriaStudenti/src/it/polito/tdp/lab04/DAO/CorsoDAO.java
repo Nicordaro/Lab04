@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class CorsoDAO {
 	public List<Corso> getTuttiICorsi() {
 
 		final String sql = "SELECT * FROM corso";
+		final String sqlIscr ="SELECT * FROM iscrizione";
 
 		List<Corso> corsi = new LinkedList<Corso>();
 
@@ -36,10 +38,29 @@ public class CorsoDAO {
 
 				System.out.println(codins + " " + numeroCrediti + " " + nome + " " + periodoDidattico);
 
+				Corso corso = new Corso(codins, numeroCrediti, nome, periodoDidattico);
+				corsi.add(corso);
+				
 				// Crea un nuovo JAVA Bean Corso
 				// Aggiungi il nuovo oggetto Corso alla lista corsi
 			}
 
+			
+			PreparedStatement st2 = conn.prepareStatement(sqlIscr);
+			
+			ResultSet rs2 = st2.executeQuery();
+					
+					while(rs2.next()) {
+						String codCorIns = rs2.getString("codins");
+						Corso ctemp = new Corso(codCorIns, 0, null, 0);
+						int matricola = rs2.getInt("matricola");
+						for(Corso c: corsi) {
+							if(c.equals(ctemp)) {
+								c.aggiungiMatricolaStudente(matricola);
+							}
+						}
+					}
+			
 			return corsi;
 
 		} catch (SQLException e) {
@@ -52,13 +73,20 @@ public class CorsoDAO {
 	 * Dato un codice insegnamento, ottengo il corso
 	 */
 	public void getCorso(Corso corso) {
+		for(Corso c: this.getTuttiICorsi()) {
+			if(c.equals(corso)) {
+				System.out.println("");
+			}
+		}
+		
 		// TODO
 	}
 
 	/*
 	 * Ottengo tutti gli studenti iscritti al Corso
 	 */
-	public void getStudentiIscrittiAlCorso(Corso corso) {
+	public List<Studente> getStudentiIscrittiAlCorso(Corso corso) {
+		return null;
 		// TODO
 	}
 
