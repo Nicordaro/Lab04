@@ -75,7 +75,9 @@ public class CorsoDAO {
 	public void getCorso(Corso corso) {
 		for(Corso c: this.getTuttiICorsi()) {
 			if(c.equals(corso)) {
-				System.out.println("");
+				corso.setNome(c.getNome());
+				corso.setNumeroCrediti(c.getNumeroCrediti());
+				corso.setPeriodoDidattico(c.getPeriodoDidattico());
 			}
 		}
 		
