@@ -58,11 +58,6 @@ public class SegreteriaStudentiController {
     }
 
     @FXML
-    void doPopola(ActionEvent event) {
-
-    }
-
-    @FXML
     void doReset(ActionEvent event) {
 
     }
@@ -74,6 +69,11 @@ public class SegreteriaStudentiController {
 
     @FXML
     void doSearchSubscribers(ActionEvent event) {
+
+    }
+
+    @FXML
+    void doSelectCourse(ActionEvent event) {
 
     }
 
