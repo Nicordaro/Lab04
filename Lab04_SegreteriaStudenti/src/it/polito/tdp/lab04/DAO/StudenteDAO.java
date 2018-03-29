@@ -20,7 +20,8 @@ public class StudenteDAO {
 	public List<Studente> getTuttiGliStudenti() {
 
 		final String sql = "SELECT * FROM studente";
-
+		final String sqlIscr ="SELECT * FROM iscrizione";
+		
 		List<Studente> studenti = new LinkedList<Studente>();
 		
 
@@ -36,11 +37,29 @@ public class StudenteDAO {
 				String cognome = rs.getString("cognome");
 				String corso = rs.getString("CDS");
 				
+				Studente stemp = new Studente(matricola, cognome, nome, corso);
+				studenti.add(stemp);
 
 				System.out.println(matricola + " " + cognome + " " + nome + " " + corso);
 				
 
 			}
+			
+			PreparedStatement st2 = conn.prepareStatement(sqlIscr);
+			
+			ResultSet rs2 = st2.executeQuery();
+					
+					while(rs2.next()) {
+						String codCorIns = rs2.getString("codins");
+						int matricola = rs2.getInt("matricola");
+//						Studente stemp = new Studente(matricola, null, null, null);
+						for(Studente s : studenti) {
+							if(s.getMatricola()==matricola) {
+								s.aggiungiCodiciCorsi(codCorIns);
+//								System.out.println("Lo studente con matricola: "+s.getMatricola()+" segue i corsi con questi codic: " +s.getCodiciCorsi());
+							}
+						}
+					}
 
 			return studenti;
 
@@ -60,17 +79,13 @@ public class StudenteDAO {
 		}
 	}
 	
-	public void getCorsiDelloStudente(Studente studente) {
+	public List<Corso> getCorsiDelloStudente(Studente studente) {
 		for(Studente s: this.getTuttiGliStudenti()) {
 			if (s.getMatricola()==studente.getMatricola()) {
 				listaCorsi=s.getCorsi();
 			}
 		}
+		return listaCorsi;
 		// TODO
 	}
-
-	public List<Corso> getListaCorsi() {
-		return listaCorsi;
-	}
-	
 }

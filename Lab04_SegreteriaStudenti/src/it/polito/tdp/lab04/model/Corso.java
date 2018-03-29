@@ -53,28 +53,30 @@ public class Corso {
 	}
 	
 	public void aggiungiMatricolaStudente(int matricolaStudente) {
-		matricoleStudentiIscritti.add(matricolaStudente);
+		if(!this.matricoleStudentiIscritti.contains(matricolaStudente))
+			matricoleStudentiIscritti.add(matricolaStudente);
 	}
 	
 	public void aggiungiStudentiIscritti(Studente studente) {
-		studentiIscritti.add(studente);
+		if(!this.studentiIscritti.contains(studente))
+			studentiIscritti.add(studente);
 	}
 
 	public List<Integer> getMatricoleStudentiIscritti() {
 		return matricoleStudentiIscritti;
 	}
 
-	public void setMatricoleStudentiIscritti(List<Integer> matricoleStudentiIscritti) {
-		this.matricoleStudentiIscritti = matricoleStudentiIscritti;
-	}
+//	public void setMatricoleStudentiIscritti(List<Integer> matricoleStudentiIscritti) {
+//		this.matricoleStudentiIscritti = matricoleStudentiIscritti;
+//	}
 
 	public List<Studente> getStudentiIscritti() {
 		return studentiIscritti;
 	}
 
-	public void setStudentiIscritti(List<Studente> studentiIscritti) {
-		this.studentiIscritti = studentiIscritti;
-	}
+//	public void setStudentiIscritti(List<Studente> studentiIscritti) {
+//		this.studentiIscritti = studentiIscritti;
+//	}
 
 	@Override
 	public int hashCode() {
