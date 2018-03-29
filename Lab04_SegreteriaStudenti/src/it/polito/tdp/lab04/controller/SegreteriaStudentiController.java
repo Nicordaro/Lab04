@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 
 public class SegreteriaStudentiController {
 
@@ -28,7 +29,7 @@ public class SegreteriaStudentiController {
     private Button btnSearchSubscribers; // Value injected by FXMLLoader
 
     @FXML // fx:id="txtName"
-    private TextField txtName; // Value injected by FXMLLoader
+    private HBox txtName; // Value injected by FXMLLoader
 
     @FXML // fx:id="txtID"
     private TextField txtID; // Value injected by FXMLLoader
@@ -57,11 +58,6 @@ public class SegreteriaStudentiController {
     }
 
     @FXML
-    void doPopola(ActionEvent event) {
-
-    }
-
-    @FXML
     void doReset(ActionEvent event) {
 
     }
@@ -73,6 +69,11 @@ public class SegreteriaStudentiController {
 
     @FXML
     void doSearchSubscribers(ActionEvent event) {
+
+    }
+
+    @FXML
+    void doSelectCourse(ActionEvent event) {
 
     }
 
