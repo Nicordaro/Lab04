@@ -88,8 +88,13 @@ public class CorsoDAO {
 	 * Ottengo tutti gli studenti iscritti al Corso
 	 */
 	public List<Studente> getStudentiIscrittiAlCorso(Corso corso) {
-		return null;
-		// TODO
+		List<Studente> listaStudenti = new ArrayList<>();
+		for(Corso c: this.getTuttiICorsi()) {
+			if(c.equals(corso)) {
+				listaStudenti = c.getStudentiIscritti();
+			}
+		}
+		return listaStudenti;
 	}
 
 	/*
@@ -98,6 +103,13 @@ public class CorsoDAO {
 	public boolean inscriviStudenteACorso(Studente studente, Corso corso) {
 		// TODO
 		// ritorna true se l'iscrizione e' avvenuta con successo
+		for(Corso c: this.getTuttiICorsi()) {
+			if(c.equals(corso)) {
+				corso.aggiungiStudentiIscritti(studente);
+			//	studente.addCorso(corso);
+				return true;
+			}
+		}
 		return false;
 	}
 }
