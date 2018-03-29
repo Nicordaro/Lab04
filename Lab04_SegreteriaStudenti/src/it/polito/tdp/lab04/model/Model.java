@@ -11,16 +11,85 @@ public class Model {
 	CorsoDAO corsoDao = new CorsoDAO();
 	StudenteDAO studenteDao = new StudenteDAO();
 	
-	private List<Corso> listaCorsi = new ArrayList<Corso>(corsoDao.getTuttiICorsi());
-	private List<Studente> listaStudenti = new ArrayList<Studente>(studenteDao.getTuttiGliStudenti());
+	public List<Corso> listaCorsi = new ArrayList<Corso>();
+	public List<Studente> listaStudenti = new ArrayList<Studente>(studenteDao.getTuttiGliStudenti());
+	
+	public void inizializza() {
+		for(Corso c: listaCorsi) {
+			for(Studente s: listaStudenti) {
+				if(c.getMatricoleStudentiIscritti().contains(s.getMatricola())) {
+					c.aggiungiStudentiIscritti(s);
+					s.aggiungiCorsi(c);
+				}
+			}
+		}
+	}
 	
 	public List<Corso> getCorsi(){
+		listaCorsi=corsoDao.getTuttiICorsi();
 		return listaCorsi;
+	}
+	
+	public List<String> listaCorsi(){
+		List<String> ctemp = new ArrayList<>();
+		for(Corso corso : this.listaCorsi) {
+			ctemp.add(corso.getNome());
+		}
+		return ctemp;
+	}
+	
+	public List<Studente> getStudenti(){
+		return listaStudenti;
+	}
+	
+	public Studente autocomplete(String matricola) {
+		int numeroMatr=Integer.parseInt(matricola);
+		Studente stemp=null;
+		for(Studente s: listaStudenti) {
+			if(s.getMatricola()==numeroMatr)
+				stemp=s;
+		}
+		return stemp;
+	}
+	
+	public List<Studente> getStudentiPerCorso(Corso corso){
+		List<Studente> studentifreq = new ArrayList<>();
+		for(Corso c: listaCorsi) {
+			if (c.equals(corso)) {
+				for(Studente s: c.getStudentiIscritti()) {
+					studentifreq.add(new Studente(s.getMatricola(), s.getCognome(), s.getNome(), s.getCDS()));
+				}
+			}
+		}
+		return studentifreq;
 	}
 	
 	public List<Studente> getStudentiIscrittiAlCorso(Corso corso) {
 		return corsoDao.getStudentiIscrittiAlCorso(corso);
 	}
 	
-	//public List<Studente>
+	
+	
+	public List<Corso> getCorsiPerStudente(Studente studente){
+		List<Corso> corsifreq = new ArrayList<>();
+		for(Studente s: listaStudenti) {
+			if (studente.equals(s)) {
+				for(Corso c: s.getCorsi()) {
+					corsifreq.add(new Corso(c.getCodins(), c.getNumeroCrediti(), c.getNome(), c.getPeriodoDidattico()));
+				}
+			}
+		}
+		return corsifreq;
+	}
+	
+	public void iscrivi(Studente studente, Corso corso) {
+		for(Studente s: listaStudenti) {
+				for(Corso c: listaCorsi) {
+					if(c.equals(corso)&&s.equals(studente))
+						c.aggiungiStudentiIscritti(s);
+						s.aggiungiCorsi(c);
+						break;
+				}
+			}
+	}
 }

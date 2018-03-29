@@ -69,7 +69,7 @@ public class Studente {
 	
 	@Override
 	public String toString() {
-		return "Studente [matricola=" + matricola + ", nome=" + nome + ", cognome=" + cognome + "]";
+		return matricola + " " + nome + " " + cognome + " " + CDS;
 	}
 	
 	public void aggiungiCodiciCorsi(String codIns) {

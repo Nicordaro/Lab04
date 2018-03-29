@@ -103,4 +103,9 @@ public class Corso {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return  codins + " " + numeroCrediti + " " + nome + " " + periodoDidattico;
+	}
+
 }

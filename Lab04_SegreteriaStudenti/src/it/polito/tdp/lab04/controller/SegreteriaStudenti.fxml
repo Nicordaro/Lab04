@@ -36,7 +36,7 @@
                </VBox.margin>
             </HBox>
             <Button fx:id="btnSearchSubscribers" mnemonicParsing="false" onAction="#doSearchSubscribers" text="Cerca iscritti corso" />
-            <HBox fx:id="txtName" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT">
                <children>
                   <Label text="Studente">
                      <HBox.margin>
@@ -53,7 +53,7 @@
                         <Insets right="5.0" />
                      </HBox.margin>
                   </Button>
-                  <TextField editable="false" promptText="Nome">
+                  <TextField fx:id="txtName" editable="false" promptText="Nome">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
