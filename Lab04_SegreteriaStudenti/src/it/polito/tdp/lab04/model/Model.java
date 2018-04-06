@@ -84,11 +84,13 @@ public class Model {
 	
 	public void iscrivi(Studente studente, Corso corso) {
 		for(Studente s: listaStudenti) {
+			if(s.equals(studente)) {
 				for(Corso c: listaCorsi) {
-					if(c.equals(corso)&&s.equals(studente))
+					if(c.equals(corso)) {
 						c.aggiungiStudentiIscritti(s);
 						s.aggiungiCorsi(c);
-						break;
+						}
+				}
 				}
 			}
 	}

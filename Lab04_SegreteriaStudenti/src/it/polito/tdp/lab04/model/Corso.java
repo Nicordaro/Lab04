@@ -66,10 +66,6 @@ public class Corso {
 		return matricoleStudentiIscritti;
 	}
 
-//	public void setMatricoleStudentiIscritti(List<Integer> matricoleStudentiIscritti) {
-//		this.matricoleStudentiIscritti = matricoleStudentiIscritti;
-//	}
-
 	public List<Studente> getStudentiIscritti() {
 		return studentiIscritti;
 	}
