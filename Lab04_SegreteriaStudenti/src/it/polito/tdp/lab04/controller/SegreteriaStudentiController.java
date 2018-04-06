@@ -61,6 +61,7 @@ public class SegreteriaStudentiController {
 
     @FXML
     void doComplete(ActionEvent event) {
+    	try {
     	String matricola = txtID.getText();
     	txtLog.clear();
     	txtName.clear();
@@ -73,6 +74,10 @@ public class SegreteriaStudentiController {
     	stemp=model.autocomplete(matricola);
     	txtName.setText(stemp.getNome());
     	txtSurname.setText(stemp.getCognome());
+    	}}
+    	catch(Exception e){
+    		txtLog.appendText("Errore, inserisci una matricola valida.");
+    		System.out.println("Errore nell'inserimento.");
     	}
     }
 
@@ -86,8 +91,11 @@ public class SegreteriaStudentiController {
 
     @FXML
     void doSearchCourses(ActionEvent event) {
-    	
     	try {
+    	
+    		txtLog.clear();
+        	txtName.clear();
+        	txtSurname.clear();
     		
     	String matricola = txtID.getText();
     	
@@ -119,6 +127,7 @@ public class SegreteriaStudentiController {
 
     @FXML
     void doSearchSubscribers(ActionEvent event) {
+    	
     	String studentiIscritti="";
     	if(comboBox.getValue()!=null) {
     	for(Studente s : model.getStudentiPerCorso(comboBox.getValue())) {
@@ -145,7 +154,10 @@ public class SegreteriaStudentiController {
     			String mtemp = txtID.getText();
     			Studente stemp=model.autocomplete(mtemp);
     			model.iscrivi(stemp, ctemp);
-    			txtLog.setText("Studente " +stemp.toString()+ " iscritto al corso: "+ctemp.toString());
+    			txtLog.appendText("Studente " +stemp.toString()+ " iscritto al corso: "+ctemp.toString());
+    		}
+    		else {
+    			txtLog.setText("Errore. Controllare che i campi inseriti siano validi e riprovare.");
     		}
     	
     	

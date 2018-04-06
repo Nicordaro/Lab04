@@ -106,7 +106,6 @@ public class CorsoDAO {
 		for(Corso c: this.getTuttiICorsi()) {
 			if(c.equals(corso)) {
 				corso.aggiungiStudentiIscritti(studente);
-			//	studente.addCorso(corso);
 				return true;
 			}
 		}
